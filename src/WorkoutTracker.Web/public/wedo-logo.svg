@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#7b2ff7"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e0e0e0"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#bgGrad)" />
+
+  <!-- Outer ring accent -->
+  <circle cx="50" cy="50" r="48" fill="none" stroke="url(#accentGrad)" stroke-width="2.5"/>
+
+  <!-- Dumbbell bar -->
+  <rect x="27" y="48" width="46" height="4" rx="2" fill="url(#barGrad)"/>
+
+  <!-- Left weight outer -->
+  <rect x="18" y="38" width="10" height="24" rx="3" fill="url(#accentGrad)"/>
+  <!-- Left weight inner -->
+  <rect x="20" y="41" width="6" height="18" rx="2" fill="#1a1a2e"/>
+
+  <!-- Right weight outer -->
+  <rect x="72" y="38" width="10" height="24" rx="3" fill="url(#accentGrad)"/>
+  <!-- Right weight inner -->
+  <rect x="74" y="41" width="6" height="18" rx="2" fill="#1a1a2e"/>
+
+  <!-- Left collar -->
+  <rect x="28" y="44" width="5" height="12" rx="1.5" fill="#ffffff" opacity="0.6"/>
+  <!-- Right collar -->
+  <rect x="67" y="44" width="5" height="12" rx="1.5" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Pulse line above dumbbell -->
+  <polyline
+    points="30,34 36,34 39,27 43,40 47,30 51,34 54,34 57,28 61,39 65,34 70,34"
+    fill="none"
+    stroke="url(#accentGrad)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- W letter at bottom -->
+  <text x="50" y="84" font-family="Arial Black, sans-serif" font-size="10" font-weight="900"
+    fill="url(#accentGrad)" text-anchor="middle" letter-spacing="2">WEDO</text>
+</svg>
