@@ -29,7 +29,7 @@ public class UserRegisterCommandHandler : IRequestHandler<UserRegisterCommand, A
         await _userRepository.AddAsync(user);
         await _userRepository.SaveChangesAsync(cancellationToken);
 
-        var token = _jwtTokenGenerator.GenerateToken(user.Email, user.FirstName);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Email, user.FirstName);
 
         return new AuthResponseDto(token, user.Email, user.FirstName);
     }

@@ -22,7 +22,7 @@ public class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, AuthRes
         if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             throw new UnauthorizedAccessException("Invalid email or password.");
 
-        var token = _jwtTokenGenerator.GenerateToken(user.Email, user.FirstName);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Email, user.FirstName);
 
         return new AuthResponseDto(token, user.Email, user.FirstName);
     }

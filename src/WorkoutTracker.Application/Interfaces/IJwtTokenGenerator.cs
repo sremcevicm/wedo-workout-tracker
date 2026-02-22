@@ -2,5 +2,5 @@ namespace WorkoutTracker.Application.Interfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(string email, string firstName);
+    string GenerateToken(Guid userId, string email, string firstName);
 }
