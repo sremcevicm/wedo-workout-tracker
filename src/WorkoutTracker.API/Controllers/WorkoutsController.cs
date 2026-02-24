@@ -34,4 +34,20 @@ public class WorkoutsController : ControllerBase
         var result = await _mediator.Send(new GetUserWorkoutsQuery(GetUserId()));
         return Ok(result);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateWorkout(Guid id, [FromBody] UpdateWorkoutCommand command)
+    {
+        var userId = GetUserId();
+        await _mediator.Send(command with { Id = id, UserId = userId });
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteWorkout(Guid id)
+    {
+        var userId = GetUserId();
+        await _mediator.Send(new DeleteWorkoutCommand(id, userId));
+        return NoContent();
+    }
 }

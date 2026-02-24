@@ -29,8 +29,14 @@ public class GetMonthlyProgressQueryHandler : IRequestHandler<GetMonthlyProgress
                 .Where(w => w.WorkoutDate.Date >= week.Start && w.WorkoutDate.Date <= week.End)
                 .ToList();
 
+            var lastDayOfMonth = new DateTime(request.Year, request.Month,
+                DateTime.DaysInMonth(request.Year, request.Month));
+            var clampedEnd = week.End > lastDayOfMonth ? lastDayOfMonth : week.End;
+
             return new WeeklyProgressDto(
                 Week: index + 1,
+                WeekStart: DateOnly.FromDateTime(week.Start),
+                WeekEnd: DateOnly.FromDateTime(clampedEnd),
                 TotalDurationInMinutes: (int)weekWorkouts.Sum(w => w.Duration.TotalMinutes),
                 TotalWorkouts: weekWorkouts.Count,
                 AverageDifficulty: weekWorkouts.Count > 0 ? Math.Round(weekWorkouts.Average(w => w.Difficulty.Value), 1) : 0,
