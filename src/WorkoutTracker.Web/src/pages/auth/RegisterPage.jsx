@@ -40,11 +40,11 @@ export default function RegisterPage() {
     <div className="auth-container">
       <div className="auth-card">
         <h1 className="auth-title">WorkoutTracker</h1>
-        <h2 className="auth-subtitle">Create account</h2>
+        <h2 className="auth-subtitle">Kreiranje naloga</h2>
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-row">
             <div className="auth-field">
-              <label htmlFor="firstName">First name</label>
+              <label htmlFor="firstName">Ime</label>
               <input
                 id="firstName"
                 name="firstName"
@@ -55,7 +55,7 @@ export default function RegisterPage() {
               />
             </div>
             <div className="auth-field">
-              <label htmlFor="lastName">Last name</label>
+              <label htmlFor="lastName">Prezime</label>
               <input
                 id="lastName"
                 name="lastName"
@@ -79,7 +79,7 @@ export default function RegisterPage() {
             />
           </div>
           <div className="auth-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Lozinka</label>
             <input
               id="password"
               name="password"
@@ -91,19 +91,19 @@ export default function RegisterPage() {
             />
           </div>
           <div className="auth-field">
-            <label htmlFor="gender">Gender</label>
+            <label htmlFor="gender">Pol</label>
             <select id="gender" name="gender" value={form.gender} onChange={handleChange}>
-              <option value="0">Male</option>
-              <option value="1">Female</option>
+              <option value="0">Muški</option>
+              <option value="1">Ženski</option>
             </select>
           </div>
           {error && <p className="auth-error">{error}</p>}
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? 'Creating account...' : 'Register'}
+            {loading ? 'Kreiranje naloga...' : 'Registruj se'}
           </button>
         </form>
         <p className="auth-link">
-          Already have an account? <Link to="/login">Sign in</Link>
+          Već imate nalog? <Link to="/login">Prijavite se</Link>
         </p>
       </div>
     </div>

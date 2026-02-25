@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getWorkouts, createWorkout, updateWorkout, deleteWorkout, getMonthlyProgress } from '../../api/workoutsApi';
-import WorkoutModal from '../../components/WorkoutModal';
+import WorkoutModal from '../../components/WorkoutModal/WorkoutModal';
+import ProgressCard from '../../components/ProgressCard/ProgressCard';
+import Button from '../../components/Button/Button';
+import { EXERCISE_LABELS } from '../../constants/exerciseTypes';
+import { MONTHS } from '../../constants/months';
 import './dashboard.css';
-
-const EXERCISE_LABELS = { 0: 'Cardio', 1: 'Strength', 2: 'Flexibility' };
 
 export default function DashboardPage() {
 
@@ -77,16 +79,6 @@ export default function DashboardPage() {
     ? (workouts.reduce((s, w) => s + w.fatigue, 0) / totalWorkouts).toFixed(1)
     : '—';
 
-  const MONTHS = [
-    'Januar', 'Februar', 'Mart', 'April', 'Maj', 'Jun',
-    'Jul', 'Avgust', 'Septembar', 'Oktobar', 'Novembar', 'Decembar',
-  ];
-
-  function fmtDate(str) {
-    const d = new Date(str);
-    return d.toLocaleDateString('sr-Latn-RS', { day: 'numeric', month: 'short' });
-  }
-
   function fmtMinutes(total) {
     const h = Math.floor(total / 60);
     const m = total % 60;
@@ -152,26 +144,16 @@ export default function DashboardPage() {
         ) : (
           <div className="progress-cards">
             {progress.map((w) => (
-              <div key={w.week} className="progress-card">
-                <div className="progress-card-title">Nedelja {w.week}</div>
-                <div className="progress-card-range">{fmtDate(w.weekStart)} — {fmtDate(w.weekEnd)}</div>
-                <div className="progress-stat">
-                  <span className="progress-stat-label">Treninga</span>
-                  <span className="progress-stat-value">{w.totalWorkouts}</span>
-                </div>
-                <div className="progress-stat">
-                  <span className="progress-stat-label">Vreme</span>
-                  <span className="progress-stat-value">{fmtMinutes(w.totalDurationInMinutes)}</span>
-                </div>
-                <div className="progress-stat">
-                  <span className="progress-stat-label">Prosećna težina</span>
-                  <span className="progress-stat-value">{w.averageDifficulty}</span>
-                </div>
-                <div className="progress-stat">
-                  <span className="progress-stat-label">Prosečan zamor</span>
-                  <span className="progress-stat-value">{w.averageFatigue}</span>
-                </div>
-              </div>
+              <ProgressCard
+                key={w.week}
+                week={w.week}
+                weekStart={w.weekStart}
+                weekEnd={w.weekEnd}
+                totalWorkouts={w.totalWorkouts}
+                totalDurationInMinutes={w.totalDurationInMinutes}
+                averageDifficulty={w.averageDifficulty}
+                averageFatigue={w.averageFatigue}
+              />
             ))}
           </div>
         )}
@@ -180,7 +162,7 @@ export default function DashboardPage() {
       <section className="workouts-section">
         <div className="section-header">
           <h2 className="col-title">Moji treninzi</h2>
-          <button className="btn-primary" onClick={openAddModal}>+ Dodaj novi trening</button>
+          <Button onClick={openAddModal}>+ Dodaj novi trening</Button>
         </div>
         {workouts.length === 0 ? (
           <p className="empty-state">Još nema treninga. Dodaj prvi!</p>
@@ -197,13 +179,13 @@ export default function DashboardPage() {
                   <span>{w.caloriesBurned} kcal</span>
                   <span>Težina: {w.difficulty}/10</span>
                   <span>Zamor: {w.fatigue}/10</span>
-                  <button
-                    className="btn-delete"
+                  <Button
+                    variant="delete"
                     onClick={(e) => { e.stopPropagation(); if (window.confirm('Obrisati ovaj trening?')) handleDelete(w.id); }}
                     title="Obriši trening"
                   >
                     X
-                  </button>
+                  </Button>
                 </div>
               </li>
             ))}

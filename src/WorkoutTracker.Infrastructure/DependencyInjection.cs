@@ -5,6 +5,7 @@ using WorkoutTracker.Application.Interfaces;
 using WorkoutTracker.Infrastructure.Auth;
 using WorkoutTracker.Infrastructure.Data;
 using WorkoutTracker.Infrastructure.Repositories;
+using WorkoutTracker.Infrastructure.Services;
 
 namespace WorkoutTracker.Infrastructure;
 
@@ -20,6 +21,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IWorkoutRepository, WorkoutRepository>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         return services;
     }

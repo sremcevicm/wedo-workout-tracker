@@ -1,6 +1,6 @@
 namespace WorkoutTracker.Domain.ValueObjects;
 
-public sealed class Rating
+public sealed record Rating
 {
     public int Value { get; }
 
@@ -16,11 +16,6 @@ public sealed class Rating
 
         return new Rating(value);
     }
-
-    public override bool Equals(object? obj) =>
-        obj is Rating other && Value == other.Value;
-
-    public override int GetHashCode() => Value.GetHashCode();
 
     public static implicit operator int(Rating rating) => rating.Value;
 }

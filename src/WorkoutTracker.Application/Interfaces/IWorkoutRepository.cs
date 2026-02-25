@@ -10,5 +10,4 @@ public interface IWorkoutRepository
     Task AddAsync(Workout workout, CancellationToken cancellationToken = default);
     Task UpdateAsync(Workout workout, CancellationToken cancellationToken = default);
     Task DeleteAsync(Workout workout, CancellationToken cancellationToken = default);
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

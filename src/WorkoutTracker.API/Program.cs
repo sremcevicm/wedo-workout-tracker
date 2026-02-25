@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using WorkoutTracker.API.Middleware;
 using WorkoutTracker.Application;
 using WorkoutTracker.Infrastructure;
 
@@ -9,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 // Application (MediatR, FluentValidation)
 builder.Services.AddApplication();
@@ -53,6 +56,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("Frontend");
+app.UseExceptionHandler();
 
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();

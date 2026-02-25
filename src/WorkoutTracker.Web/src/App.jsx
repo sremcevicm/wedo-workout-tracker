@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
-import ProtectedLayout from './components/ProtectedLayout';
-import PublicRoute from './components/PublicRoute';
+import ProtectedLayout from './layouts/ProtectedLayout';
+import PublicRoute from './routes/PublicRoute';
 
 export default function App() {
   return (

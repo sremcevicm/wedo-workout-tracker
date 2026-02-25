@@ -1,6 +1,0 @@
-using MediatR;
-using WorkoutTracker.Application.Common.DTOs;
-
-namespace WorkoutTracker.Application.Features.User.Commands;
-
-public record UserLoginCommand(string Email, string Password) : IRequest<AuthResponseDto>;

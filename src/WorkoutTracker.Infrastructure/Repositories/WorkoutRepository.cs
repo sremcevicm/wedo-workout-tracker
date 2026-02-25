@@ -17,12 +17,13 @@ public class WorkoutRepository : IWorkoutRepository
     public async Task AddAsync(Workout workout, CancellationToken cancellationToken = default)
     {
         await _context.Workouts.AddAsync(workout, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(Workout workout, CancellationToken cancellationToken = default)
     {
         _context.Workouts.Remove(workout);
-        await Task.CompletedTask;
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<Workout?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -49,12 +50,8 @@ public class WorkoutRepository : IWorkoutRepository
     public async Task UpdateAsync(Workout workout, CancellationToken cancellationToken = default)
     {
         _context.Workouts.Update(workout);
-        await Task.CompletedTask;
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await _context.SaveChangesAsync(cancellationToken);
-    }
 }
 

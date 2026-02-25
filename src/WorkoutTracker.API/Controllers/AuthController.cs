@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WorkoutTracker.Application.Features.User.Commands;
+using WorkoutTracker.Application.Features.Users.Commands.Login;
+using WorkoutTracker.Application.Features.Users.Commands.Register;
 
 namespace WorkoutTracker.API.Controllers;
 

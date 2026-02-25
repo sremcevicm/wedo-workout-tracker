@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="auth-container">
       <div className="auth-card">
         <h1 className="auth-title">WorkoutTracker</h1>
-        <h2 className="auth-subtitle">Sign in</h2>
+        <h2 className="auth-subtitle">Prijava</h2>
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-field">
             <label htmlFor="email">Email</label>
@@ -49,7 +49,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="auth-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Lozinka</label>
             <input
               id="password"
               name="password"
@@ -62,11 +62,11 @@ export default function LoginPage() {
           </div>
           {error && <p className="auth-error">{error}</p>}
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? 'Prijavljivanje...' : 'Prijavi se'}
           </button>
         </form>
         <p className="auth-link">
-          Don&apos;t have an account? <Link to="/register">Register</Link>
+          Nemate nalog? <Link to="/register">Registrujte se</Link>
         </p>
       </div>
     </div>
